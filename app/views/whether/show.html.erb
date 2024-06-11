@@ -1,0 +1,23 @@
+<%= render "shared/flash" %>
+
+<h1>Weather</h1>
+
+<%= form_with(method: 'get', local: true) do %>
+    <div class="form-group">
+      <%= label_tag :address, "What is your address?" %><br>
+      <%= text_field_tag :address, @address || @address_default, size: 70, class: 'form-control' %><br>
+      <%= submit_tag "Lookup", class: 'btn btn-primary' %>
+    </div>
+<% end %>
+
+<% if @weather %>
+    <ul>
+        <li>Temperature: <%= @weather.temperature %> ℃</li>
+        <li>Temperature Minimum: <%= @weather.temperature_min %> ℃</li>
+        <li>Temperature Maximum: <%= @weather.temperature_max %> ℃</li>
+        <li>Humidity: <%= @weather.humidity %>%</li>
+        <li>Pressure: <%= @weather.pressure %> millibars</li>
+        <li>Description: <%= @weather.description %></li>
+        <li>Is this result from the cache? <%= @weather_cache_exist ? 'Yes' : 'No' %></li>
+    </ul>
+<% end %>
